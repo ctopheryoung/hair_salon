@@ -44,38 +44,30 @@ public class ClientTest {
   }
 
   //UPDATE TESTS
-  // @Test
-  // public void update__updatesClientNameInDatabase() {
-  //   Client testClient = new Client("Sven", "123-456-7890", 2);
-  //   testClient.save();
-  //   testClient.update("Bjorn", "123-456-7890", 2);
-  //   assertEquals(Client.all().get(0).getClient(), "Bjorn");
-  // }
+  @Test
+  public void update__updatesClientNameInDatabase() {
+    Client testClient = new Client("Sven", "123-456-7890", 2);
+    testClient.save();
+    testClient.update("Bjorn", null, testClient.getStylistId());
+    assertEquals(Client.all().get(0).getClient(), "Bjorn");
+  }
 
-  // @Test
-  // public void updatePrice_updatesRestaurantPriceInDatabase() {
-  //   Restaurant testRestaurant = new Restaurant("Lardo", "$", "Casual", 2);
-  //   testRestaurant.save();
-  //   testRestaurant.updatePrice("$$");
-  //   assertEquals(Restaurant.all().get(0).getPrice(), "$$");
-  // }
-  //
-  // @Test
-  // public void updateVibe_updatesRestaurantVibeInDatabase() {
-  //   Restaurant testRestaurant = new Restaurant("Lardo", "$", "Casual", 2);
-  //   testRestaurant.save();
-  //   testRestaurant.updateVibe("Divey");
-  //   assertEquals(Restaurant.all().get(0).getVibe(), "Divey");
-  // }
-  //
-  // @Test
-  // public void updateCusineId_updatesRestaurantCuisineIdInDatabase() {
-  //   Restaurant testRestaurant = new Restaurant("Lardo", "$", "Casual", 2);
-  //   testRestaurant.save();
-  //   testRestaurant.updateCuisineId(3);
-  //   assertEquals(Restaurant.all().get(0).getCuisineId(), 3);
-  // }
-  //
+  @Test
+  public void update__updatesClientPhoneInDatabase() {
+    Client testClient = new Client("Sven", "123-456-7890", 2);
+    testClient.save();
+    testClient.update(null, "123-123-1234", testClient.getStylistId());
+    assertEquals(Client.all().get(0).getPhone(), "123-123-1234");
+  }
+
+  @Test
+  public void update__updatesClientStylistIdInDatabase() {
+    Client testClient = new Client("Sven", "123-456-7890", 2);
+    testClient.save();
+    testClient.update(null, null, 5);
+    assertEquals(Client.all().get(0).getStylistId(), 5);
+  }
+
   @Test
   public void deleteClient_deletesClientFromDatabase() {
     Client testClient = new Client("Sven", "123-456-7890", 1);
