@@ -21,29 +21,37 @@ public class StylistTest {
     assertTrue(stylistOne.equals(stylistTwo));
   }
 
-  // @Test
-  // public void save_returnsTrueIfCuisinesAreTheSame() {
-  //   Cuisine testCuisine = new Cuisine("American");
-  //   testCuisine.save();
-  //   assertTrue(Cuisine.all().get(0).equals(testCuisine));
-  // }
-  //
-  // @Test
-  // public void save_assignsIdToObject() {
-  //   Cuisine myCuisine = new Cuisine("American");
-  //   myCuisine.save();
-  //   Cuisine savedCuisine = Cuisine.all().get(0);
-  //   assertEquals(myCuisine.getId(), savedCuisine.getId());
-  // }
-  //
-  // @Test
-  // public void update_updatesCuisineTypeInDB() {
-  //   Cuisine myCuisine = new Cuisine("American");
-  //   myCuisine.save();
-  //   myCuisine.update("Italian");
-  //   assertEquals(Cuisine.all().get(0).getType(), "Italian");
-  // }
-  //
+  @Test
+  public void save_returnsTrueIfStylistIsSavedInDB() {
+    Stylist testStylist = new Stylist("Fred");
+    testStylist.save();
+    assertTrue(Stylist.all().get(0).equals(testStylist));
+  }
+
+  @Test
+  public void save_assignsIdToObject() {
+    Stylist testStylist = new Stylist("Fred");
+    testStylist.save();
+    Stylist savedStylist = Stylist.all().get(0);
+    assertEquals(testStylist.getId(), savedStylist.getId());
+  }
+
+  @Test
+  public void find_findsStylistInDatabase_true() {
+    Stylist testStylist = new Stylist("George");
+    testStylist.save();
+    Stylist savedStylist = Stylist.find(testStylist.getId());
+    assertTrue(testStylist.equals(savedStylist));
+  }
+
+  @Test
+  public void update__updatesStylistNameInDatabase() {
+    Stylist testStylist = new Stylist("Sven");
+    testStylist.save();
+    testStylist.update("Bjorn");
+    assertEquals(Stylist.all().get(0).getStylist(), "Bjorn");
+  }
+
   // @Test
   // public void delete_deletesCuisineTypeFromDB() {
   //   Cuisine myCuisine = new Cuisine("American");

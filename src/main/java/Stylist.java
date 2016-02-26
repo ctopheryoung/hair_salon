@@ -29,7 +29,16 @@ public class Stylist {
   }
 
   //CREATE
-  //READ
+  public void save() {
+    String sql = "INSERT INTO stylists(stylist) VALUES (:stylist)";
+    try (Connection con = DB.sql2o.open()) {
+      this.id = (int) con.createQuery(sql, true)
+        .addParameter("stylist", stylist)
+        .executeUpdate()
+        .getKey();
+    }
+  }
+
   //READ
   public static List<Stylist> all() {
     String sql = "SELECT id, stylist FROM stylists";
@@ -37,6 +46,28 @@ public class Stylist {
       return con.createQuery(sql).executeAndFetch(Stylist.class);
     }
   }
+
+  public static Stylist find(int id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM stylists WHERE id=:id";
+      Stylist stylist = con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(Stylist.class);
+      return stylist;
+    }
+  }
+
   //UPDATE
+  public void update(String newStylistName) {
+    this.stylist = newStylistName;
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE stylists SET stylist = :stylist WHERE id = :id";
+      con.createQuery(sql)
+        .addParameter("stylist", newStylistName)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
   //DELETE
 }
