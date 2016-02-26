@@ -45,12 +45,11 @@ public class ClientTest {
 
   //UPDATE TESTS
   // @Test
-  // public void updateName_updatesRestaurantNameInDatabase() {
-  //   Restaurant testRestaurant = new Restaurant("Lardo", "$", "Casual", 2);
-  //   testRestaurant.save();
-  //   testRestaurant.updateName("Pig Fat");
-  //   assertEquals(Restaurant.all().get(0).getName(), "Pig Fat");
-  //   // assertTrue(((Restaurant.all().get(0)).getName()).equals("Pig Fat"));
+  // public void update__updatesClientNameInDatabase() {
+  //   Client testClient = new Client("Sven", "123-456-7890", 2);
+  //   testClient.save();
+  //   testClient.update("Bjorn", "123-456-7890", 2);
+  //   assertEquals(Client.all().get(0).getClient(), "Bjorn");
   // }
 
   // @Test
