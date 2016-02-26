@@ -4,10 +4,12 @@ import java.util.List;
 public class Client {
   private int id;
   private String client;
+  private String phone;
   private int stylist_id;
 
-  public Client(String client, int stylist_id) {
+  public Client(String client, String phone, int stylist_id) {
     this.client = client;
+    this.phone = phone;
     this.stylist_id = stylist_id;
   }
 
@@ -17,6 +19,10 @@ public class Client {
 
   public String getClient() {
     return client;
+  }
+
+  public String getPhone() {
+    return phone;
   }
 
   public int getStylistId() {
@@ -30,15 +36,17 @@ public class Client {
     } else {
       Client newClient = (Client) otherClient;
       return this.getClient().equals(newClient.getClient()) &&
-        this.getStylistId() == newClient.getStylistId();
+             this.getPhone().equals(newClient.getPhone()) &&
+             this.getStylistId() == newClient.getStylistId();
     }
   }
   //CREATE
   public void save() {
     try (Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO clients(client, stylist_id) VALUES (:client, :stylist_id)";
+      String sql = "INSERT INTO clients(client, phone, stylist_id) VALUES (:client, :phone, :stylist_id)";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("client", client)
+        .addParameter("phone", phone)
         .addParameter("stylist_id", stylist_id)
         .executeUpdate()
         .getKey();
@@ -47,10 +55,20 @@ public class Client {
 
   //READ
   public static List<Client> all() {
-      String sql = "SELECT id, client, stylist_id FROM clients";
+      String sql = "SELECT id, client, phone, stylist_id FROM clients";
       try(Connection con = DB.sql2o.open()) {
         return con.createQuery(sql).executeAndFetch(Client.class);
       }
+  }
+
+  public static Client find(int id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM clients WHERE id=:id";
+      Client client = con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(Client.class);
+      return client;
+    }
   }
 
   //UPDATE
