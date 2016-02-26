@@ -20,4 +20,19 @@ public class ClientTest {
     assertTrue(firstClient.equals(secondClient));
   }
 
+  @Test
+  public void save_returnsTrueIfClientsAreTheSame() {
+    Client testClient = new Client("Sven", 2);
+    testClient.save();
+    assertTrue(Client.all().get(0).equals(testClient));
+  }
+
+  @Test
+  public void save_assignsIdToClient() {
+    Client myClient = new Client("Sven", 2);
+    myClient.save();
+    Client savedClient = Client.all().get(0);
+    assertEquals(myClient.getId(), savedClient.getId());
+  }
+
 }
