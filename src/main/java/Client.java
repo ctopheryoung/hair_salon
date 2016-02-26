@@ -4,11 +4,11 @@ import java.util.List;
 public class Client {
   private int id;
   private String client;
-  private int stylistId;
+  private int stylist_id;
 
-  public Client(String client, int stylistId) {
+  public Client(String client, int stylist_id) {
     this.client = client;
-    this.stylistId = stylistId;
+    this.stylist_id = stylist_id;
   }
 
   public int getId() {
@@ -20,7 +20,18 @@ public class Client {
   }
 
   public int getStylistId() {
-    return stylistId;
+    return stylist_id;
   }
+  //CREATE
+  //READ
+  public static List<Client> all() {
+      String sql = "SELECT id, client, stylist_id FROM clients";
+      try(Connection con = DB.sql2o.open()) {
+        return con.createQuery(sql).executeAndFetch(Client.class);
+      }
+  }
+
+  //UPDATE
+  //DELETE
 
 }

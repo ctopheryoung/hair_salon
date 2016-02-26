@@ -1,12 +1,16 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.junit.Rule;
+import org.sql2o.*;
 
 public class ClientTest {
 
   @Rule
   public DatabaseRule database = new DatabaseRule();
 
-  //Tests go here
+  @Test
+  public void all_emptyAtFirst() {
+      assertEquals(Client.all().size(), 0);
+  }
 
 }

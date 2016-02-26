@@ -16,4 +16,9 @@ public class Stylist {
   public String getStylist() {
     return stylist;
   }
+
+  //CREATE
+  //READ
+  //UPDATE
+  //DELETE
 }
