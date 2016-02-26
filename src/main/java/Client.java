@@ -71,6 +71,16 @@ public class Client {
     }
   }
 
+  public String getStylistById() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT stylist FROM stylists WHERE id = :id";
+      return con.createQuery(sql)
+        .addParameter("id", stylist_id)
+        .executeAndFetchFirst(Stylist.class)
+        .getStylist();
+    }
+  }
+
   //UPDATE
   public void update(String newClientName, String newPhone, int newStylistId) {
     this.client = newClientName;

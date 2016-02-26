@@ -75,23 +75,23 @@ public class ClientTest {
     testClient.delete();
     assertEquals(Client.all().size(), 0);
   }
-  //
-  // @Test
-  // public void save_savesCuisineIdIntoRestaurant() {
-  //   Cuisine myCuisine = new Cuisine("American");
-  //   myCuisine.save();
-  //   Restaurant myRestaurant = new Restaurant("Lardo", "$", "Casual", myCuisine.getId());
-  //   myRestaurant.save();
-  //   Restaurant savedRestaurant = Restaurant.find(myRestaurant.getId());
-  //   assertEquals(savedRestaurant.getCuisineId(), myCuisine.getId());
-  // }
-  //
-  // @Test
-  // public void getCuisineType_getsCuisineAssociatedWithRestaurant() {
-  //   Cuisine myCuisine = new Cuisine("American");
-  //   myCuisine.save();
-  //   Restaurant myRestaurant = new Restaurant("Lardo", "$", "Casual", myCuisine.getId());
-  //   myRestaurant.save();
-  //   assertEquals(myRestaurant.getCuisineType(), myCuisine.getType());
-  // }
+
+  @Test
+  public void save_savesStylistIdIntoClient() {
+    Stylist testStylist = new Stylist("Louie");
+    testStylist.save();
+    Client testClient = new Client("Sven", "123-456-7890", testStylist.getId());
+    testClient.save();
+    Client savedClient = Client.find(testClient.getId());
+    assertEquals(savedClient.getStylistId(), testStylist.getId());
+  }
+
+  @Test
+  public void getStylistById_getsStylistNameAssociatedWithClient() {
+    Stylist testStylist = new Stylist("Velma");
+    testStylist.save();
+    Client testClient = new Client("Sven", "123-456-7890", testStylist.getId());
+    testClient.save();
+    assertEquals(testClient.getStylistById(), testStylist.getStylist());
+  }
 }
