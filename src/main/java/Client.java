@@ -22,6 +22,17 @@ public class Client {
   public int getStylistId() {
     return stylist_id;
   }
+
+  @Override
+  public boolean equals(Object otherClient){
+    if (!(otherClient instanceof Client)) {
+      return false;
+    } else {
+      Client newClient = (Client) otherClient;
+      return this.getClient().equals(newClient.getClient()) &&
+        this.getStylistId() == newClient.getStylistId();
+    }
+  }
   //CREATE
   //READ
   public static List<Client> all() {
