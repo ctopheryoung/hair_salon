@@ -1,28 +1,18 @@
-# Java/Spark/Velocity File Structure Template
+# Hair Salon Management App
 
-#### Date
+#### February 26th, 2016
 
-#### By Names
+#### By Chris Young
 
 ## Description
 
-This is a template file structure for use in Epicodus Java/Spark/Velocity projects.
+A hair salon app written in Java that assists owners in managing stylist/client relationships. Gives the user the ability to add a list of the stylists, and for each stylist, add clients who see that stylist. The stylists work independently, so each client only belongs to a single stylist. Utilizes a SQL database to store stylists and their clients.
 
-[Here is a helpful list of Spark routes.] (https://dl.dropboxusercontent.com/s/gle8iwtk2ed9tg6/Screenshot%202015-07-23%2011.18.30.png)
+## Setup
 
-## How To Use
+### In PSQL:
+* CREATE DATABASE hair_salon;
+* CREATE TABLE stylists (id serial PRIMARY KEY, stylist varchar);
+* CREATE TABLE clients (id serial PRIMARY KEY, client varchar, stylist_id int);
 
-* Make a directory for your project and initialize a git repository.
-* Pull this file structure template from GitHub
-
-OR:
-
-* Fork this repository from GitHub and rename it
-
-## Please Make This Better
-
-Please fork this repository and send a pull request if something in here could be better.
-
-## Technologies Used
-
-Java, Spark, JUnit, FluentLenium, Velocity, Bootstrap
+* If you with to run the tests I have written, run: CREATE DATABASE to_do_test WITH TEMPLATE to_do;
