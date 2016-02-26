@@ -43,6 +43,7 @@ public class ClientTest {
     assertTrue(testClient.equals(savedClient));
   }
 
+  //UPDATE TESTS
   // @Test
   // public void updateName_updatesRestaurantNameInDatabase() {
   //   Restaurant testRestaurant = new Restaurant("Lardo", "$", "Casual", 2);
@@ -51,7 +52,7 @@ public class ClientTest {
   //   assertEquals(Restaurant.all().get(0).getName(), "Pig Fat");
   //   // assertTrue(((Restaurant.all().get(0)).getName()).equals("Pig Fat"));
   // }
-  //
+
   // @Test
   // public void updatePrice_updatesRestaurantPriceInDatabase() {
   //   Restaurant testRestaurant = new Restaurant("Lardo", "$", "Casual", 2);
@@ -76,13 +77,13 @@ public class ClientTest {
   //   assertEquals(Restaurant.all().get(0).getCuisineId(), 3);
   // }
   //
-  // @Test
-  // public void deleteRestaurant_deletesRestaurantFromDatabase() {
-  //   Restaurant testRestaurant = new Restaurant("Lardo", "$", "Casual", 2);
-  //   testRestaurant.save();
-  //   testRestaurant.deleteRestaurant();
-  //   assertEquals(Restaurant.all().size(), 0);
-  // }
+  @Test
+  public void deleteClient_deletesClientFromDatabase() {
+    Client testClient = new Client("Sven", "123-456-7890", 1);
+    testClient.save();
+    testClient.delete();
+    assertEquals(Client.all().size(), 0);
+  }
   //
   // @Test
   // public void save_savesCuisineIdIntoRestaurant() {
