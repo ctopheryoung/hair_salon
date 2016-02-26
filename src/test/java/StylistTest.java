@@ -52,11 +52,11 @@ public class StylistTest {
     assertEquals(Stylist.all().get(0).getStylist(), "Bjorn");
   }
 
-  // @Test
-  // public void delete_deletesCuisineTypeFromDB() {
-  //   Cuisine myCuisine = new Cuisine("American");
-  //   myCuisine.save();
-  //   myCuisine.delete();
-  //   assertEquals(Cuisine.all().size(), 0);
-  // }
+  @Test
+  public void delete_deletesStylistFromDB() {
+    Stylist testStylist = new Stylist("Amond Bundy");
+    testStylist.save();
+    testStylist.delete();
+    assertEquals(Stylist.all().size(), 0);
+  }
 }
