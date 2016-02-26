@@ -15,4 +15,4 @@ A hair salon app written in Java that assists owners in managing stylist/client 
 * CREATE TABLE stylists (id serial PRIMARY KEY, stylist varchar);
 * CREATE TABLE clients (id serial PRIMARY KEY, client varchar, stylist_id int);
 
-* If you with to run the tests I have written, run: CREATE DATABASE to_do_test WITH TEMPLATE to_do;
+* If you also want to run the tests I have written, run: CREATE DATABASE to_do_test WITH TEMPLATE to_do;
