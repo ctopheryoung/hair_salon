@@ -1,0 +1,16 @@
+stylist.vtl
+
+<h3>Here are all the the clients for Stylist: $stylist.getStylist()</h3>
+
+#if ($clients)
+<ul>
+  #foreach($client in $clients)
+   <li><a href="/clients/$client.getId()">$client.getClient()</a></li>
+  #end
+</ul>
+  #else
+  <p>There are no clients for this stylist.</p>
+#end
+
+<a class="btn btn-danger" href="/stylists/$stylist.getId()/clients/new">Add Client</a>
+<a class="btn btn-info" href="/">Home</a>

@@ -1,0 +1,15 @@
+stylists.vtl
+
+<h1>Stylists:</h1>
+
+#if ($stylists)
+  <ul>
+  #foreach($stylist in $stylists)
+   <li><a href="/stylists/$stylist.getId()">$stylist.getStylist()</a></li>
+   #end
+  </ul>
+#else
+  <h3>There are currently no stylists.</h3>
+#end
+
+<a class="btn btn-danger" href="/stylist/new">Add New Stylist</a>

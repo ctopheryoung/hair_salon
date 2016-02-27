@@ -1,0 +1,13 @@
+stylist-client-form.vtl
+
+<h1>Add a client for $stylist.getStylist()</h1>
+
+<form action="/stylists/$stylist.getId()" method="post">
+
+  <div class="form-group">
+    <label for="client">Client Name:</label>
+    <input id="client" type="text" name="client" class="form-control" required>
+  </div>
+
+  <button type="submit" class="btn btn-success" >Add Client</button>
+</form>

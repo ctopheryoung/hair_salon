@@ -1,0 +1,12 @@
+clients-all.vtl
+
+<h2>All Clients:</h2>
+
+<ul>
+  #foreach ($client in $clients)
+    <li><a href="/clients/$client.getId()">$client.getClient()</a></li>
+  #end
+</ul>
+
+<a class="btn btn-info" href="/stylists">View Clients by Stylist</a>
+<a class="btn btn-success"href="/">Return Home</a>

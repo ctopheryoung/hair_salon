@@ -1,8 +1,6 @@
 import org.fluentlenium.adapter.FluentTest;
 import static org.junit.Assert.*;
 import org.junit.*;
-import org.junit.ClassRule;
-import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import static org.fluentlenium.core.filter.FilterConstructor.*;
@@ -27,5 +25,13 @@ public class AppTest extends FluentTest {
   public void rootTest() {
     goTo("http://localhost:4567/");
     assertThat(pageSource()).contains("Hair Salon Manager");
+  }
+
+  @Test
+  public void stylistIsDisplayedTest() {
+    Stylist testStylist = new Stylist ("Larry");
+    testStylist.save();
+    goTo("http://localhost:4567/stylists");
+    assertThat(pageSource()).contains("Larry");
   }
 }

@@ -1,0 +1,13 @@
+client-phone-form.vtl
+
+<h3>Add primary phone number</h3>
+<p>Client: $client.getClient()</p>
+<p>Stylist: $client.getStylistById()</p>
+
+<form action="/clients/$client.getId()" method="post">
+  <input id="client" name="client" type=hidden value="$client.getName()">
+  <input id="stylistId" name="stylistId" type=hidden value="$client.getStylistId()">
+  <label for="newPhone">Add number:</label>
+  <input id="newPhone" name="newPhone" type=text>
+  <button type="submit" class="btn btn-success">Save</button>
+</form>
