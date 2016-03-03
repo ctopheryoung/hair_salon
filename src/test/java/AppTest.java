@@ -67,7 +67,7 @@ public class AppTest extends FluentTest {
     String clientPage = String.format("http://localhost:4567/clients/%d", testClient.getId());
     goTo(clientPage);
     click("button", withText("Delete Client"));
-    assertThat(pageSource()).contains("Client has succesfully been deleted.");
+    assertThat(pageSource()).contains("Delete Successful!");
   }
 
   @Test

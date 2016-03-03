@@ -1,6 +1,11 @@
 stylist.vtl
+<h3>Stylist: $stylist.getStylist()</h3>
+<a class="btn btn-warning" href="/stylist/$stylist.getId()/edit">Edit $stylist.getStylist()'s Info</a>
+<form action="/delete/stylist/$stylist.getId()" method="post">
+  <button type="submit" class="btn btn-danger">Delete $stylist.getStylist()</button>
+</form>
 
-<h3>Here are all the the clients for Stylist: $stylist.getStylist()</h3>
+<h4>$stylist.getStylist()'s Clients:</h4>
 
 #if ($clients)
 <ul>
@@ -8,9 +13,9 @@ stylist.vtl
    <li><a href="/clients/$client.getId()">$client.getClient()</a></li>
   #end
 </ul>
-  #else
+#else
   <p>There are no clients for this stylist.</p>
 #end
 
-<a class="btn btn-danger" href="/stylists/$stylist.getId()/clients/new">Add Client</a>
-<a class="btn btn-info" href="/">Home</a>
+<a class="btn btn-info" href="/stylists/$stylist.getId()/clients/new">Add A Client</a><br>
+<a class="btn btn-success" href="/">Return Home</a>

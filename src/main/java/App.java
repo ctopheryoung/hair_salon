@@ -44,13 +44,42 @@ public class App {
 
     post("/stylists/:id", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
-      Stylist stylist = Stylist.find(Integer.parseInt(request.params(":id")));
       String client = request.queryParams("client");
-      Client newClient = new Client(client, null, stylist.getId());
+      Stylist stylist = Stylist.find(Integer.parseInt(request.params(":id")));
+      Client newClient = new Client(client, "", stylist.getId());
       newClient.save();
       model.put("clients", stylist.getClients());
       model.put("stylist", stylist);
       model.put("template", "templates/stylist.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/stylists/:id/edited", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      String newName = request.queryParams("newName");
+      Stylist stylist = Stylist.find(Integer.parseInt(request.params(":id")));
+      stylist.update(newName);
+      model.put("clients", stylist.getClients());
+      model.put("stylist", stylist);
+      model.put("template", "templates/stylist.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/stylist/:id/edit", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      Stylist stylist = Stylist.find(Integer.parseInt(request.params(":id")));
+      model.put("stylist", stylist);
+      model.put("template", "templates/stylist-edit-form.vtl");
+      return new ModelAndView(model,layout);
+    }, new VelocityTemplateEngine());
+
+    post("/delete/stylist/:id", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+
+      Stylist stylist = Stylist.find(Integer.parseInt(request.params(":id")));
+      stylist.delete();
+
+      model.put("template", "templates/deleted.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -96,7 +125,7 @@ public class App {
       HashMap<String, Object> model = new HashMap<String, Object>();
       Client client = Client.find(Integer.parseInt(request.params(":id")));
       model.put("client", client);
-      model.put("template", "templates/client-phone-form.vtl");
+      model.put("template", "templates/client-edit-form.vtl");
       return new ModelAndView(model,layout);
     }, new VelocityTemplateEngine());
 

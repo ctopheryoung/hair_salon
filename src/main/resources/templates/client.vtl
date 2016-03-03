@@ -2,18 +2,14 @@ client.vtl
 
 #if ($client)
   <h1>$client.getClient()</h1>
-  <p>$client.getClient()'s stylist is: <a href="/stylists/$client.getStylistId()">$client.getStylistById()</a></p>
-
-  #if ($client.getPhone())
-    <p>Primary phone number for $client.getClient(): $client.getPhone()</p>
-  #else
-    <a class="btn btn-warning" href="/client/$client.getId()/edit">Add Primary Phone Number</a>
-  #end
-
+  <p>Primary phone number for $client.getClient(): $client.getPhone()</p>
+  <a class="btn btn-warning" href="/client/$client.getId()/edit">Edit Client</a>
   <form action="/delete/client/$client.getId()" method="post">
     <button type="submit" class="btn btn-danger">Delete Client</button>
   </form>
-
+  
 #else
   <h3>Client has been deleted or does not exist!</h3>
 #end
+
+<a class="btn btn-success" href="/">Return Home</a>

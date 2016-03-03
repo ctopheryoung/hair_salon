@@ -1,0 +1,9 @@
+stylist-edit-form.vtl
+
+<h3>Edit $stylist.getStylist()</h3>
+
+<form action="/stylists/$stylist.getId()/edited" method="post">
+  <label for="newName">New Name:</label>
+  <input id="newName" name="newName" value="$stylist.getStylist()">
+  <button type="submit" class="btn btn-success">Save</button>
+</form>
