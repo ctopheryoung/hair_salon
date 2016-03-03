@@ -2,12 +2,12 @@ client.vtl
 
 #if ($client)
   <h1>$client.getClient()</h1>
-  <p>Primary phone number for $client.getClient(): $client.getPhone()</p>
+  <p>$client.getPhone()</p>
   <a class="btn btn-warning" href="/client/$client.getId()/edit">Edit Client</a>
   <form action="/delete/client/$client.getId()" method="post">
     <button type="submit" class="btn btn-danger">Delete Client</button>
   </form>
-  
+
 #else
   <h3>Client has been deleted or does not exist!</h3>
 #end
